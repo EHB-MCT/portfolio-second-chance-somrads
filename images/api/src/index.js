@@ -1,4 +1,5 @@
 const express = require("express");
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 
@@ -8,7 +9,7 @@ app.get("/", (req, resp)=>{
 
 app.listen(3000, (err) => {
   if (!err){
-    console.log("server is running");
+    console.log(`API server listening on port ${PORT}`);
   } else {
     console.error(err);
   }
