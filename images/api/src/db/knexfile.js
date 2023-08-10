@@ -10,7 +10,7 @@ if (environment === "test") {
     `/${process.env.POSTGRES_TEST_DATABASE}`
   );
 } else {
-  connection = process.env.POSTGRES_CONNECTION_STRING;
+  throw new Error("POSTGRES_CONNECTION_STRING is not defined");
 }
 
 console.log(`Using ${environment} database connection: ${connection}`);
