@@ -12,6 +12,7 @@ services:
       - ./images/api/src:/usr/app/src
     environment:
       POSTGRES_CONNECTION_STRING: "postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@store:5432/${POSTGRES_DATABASE}"
+      POSTGRES_DATABASE: ${POSTGRES_DATABASE} 
     depends_on:
       - store
     healthcheck:
