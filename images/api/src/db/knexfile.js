@@ -13,6 +13,8 @@ if (environment === "test") {
   connection = process.env.POSTGRES_CONNECTION_STRING;
 }
 
+console.log(`Using ${environment} database connection: ${connection}`);
+
 module.exports = {
   client: "pg",
   connection: connection,
