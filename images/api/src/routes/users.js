@@ -48,4 +48,30 @@ router
       .catch((err) => handleError(err, res));
   });
 
+router
+  .route("/:id")
+  .put((req, res) => {
+    const { lastName, firstName } = req.body;
+    knex("users")
+      .where({ id: req.params.id })
+      .update({ lastName, firstName })
+      .then(() => {
+        res.status(200).json({
+          message: `Updated user with id ${req.params.id} and set name to ${firstName} ${lastName}`,
+        });
+      })
+      .catch((err) => handleError(err, res));
+  })
+  .delete((req, res) => {
+    knex("users")
+      .where({ id: req.params.id })
+      .del()
+      .then(() => {
+        res.status(200).json({
+          message: `Deleted user with id ${req.params.id}`,
+        });
+      })
+      .catch((err) => handleError(err, res));
+  });
+
 module.exports = router;
