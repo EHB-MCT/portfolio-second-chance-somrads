@@ -1,5 +1,5 @@
 const request = require("supertest");
-const app = require("../index");
+const app = require("../app");
 const knex = require("../db/knexfile");
 
 describe("Users Route - POST Endpoint", () => {
@@ -17,7 +17,7 @@ describe("Users Route - POST Endpoint", () => {
     const newUser = { firstName: "John", lastName: "Doe" };
 
     const response = await request(app)
-      .post("/path-to-users-route")
+      .post("/users")
       .send(newUser);
 
     expect(response.statusCode).toBe(201);
@@ -34,7 +34,7 @@ describe("Users Route - POST Endpoint", () => {
     await knex("users").insert(existingUser);
 
     const response = await request(app)
-      .post("/path-to-users-route")
+      .post("/users")
       .send(existingUser);
 
     expect(response.statusCode).toBe(400);
