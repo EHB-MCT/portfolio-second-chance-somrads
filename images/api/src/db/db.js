@@ -1,5 +1,6 @@
 require("dotenv").config();
-const knex = require("knex")(require("./knexfile.js"));
+const knexConfig = require("./knexfile");
+const knex = require("knex")(knexConfig);
 
 module.exports = {
   connect: () => {
