@@ -1,13 +1,16 @@
+require("dotenv").config();
+
 const express = require("express");
 const app = express();
 const db = require("./db/db");
 const usersRouter = require("./routes/users");
 const bodyParser = require("body-parser");
 
+app.use(bodyParser.json());
+
 // Connect to the database
 db.connect();
 
-app.use(bodyParser.json());
 
 app.get("/healthcheck", (req, res) => {
   res.status(200).send("OK");
