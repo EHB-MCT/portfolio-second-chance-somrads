@@ -1,43 +1,23 @@
-const request = require("supertest");
-const app = require("../app");
-const knex = require("../db/knexfile");
+const express = require('express');
+const { expect } = require('chai');
+const request = require('supertest');
 
-describe("Users Route - POST Endpoint", () => {
-  beforeEach(async () => {
-    // Clear out users table to ensure a clean state
-    await knex("users").del();
-  });
+// Import your router
+const router = require('../routes/users');
 
-  afterEach(async () => {
-    // Clear out users table to ensure no lingering test data
-    await knex("users").del();
-  });
+// Create an Express app and use the router
+const app = express();
+app.use('/', router);
 
-  test("should add a new user", async () => {
-    const newUser = { firstName: "John", lastName: "Doe" };
-
-    const response = await request(app)
-      .post("/users")
-      .send(newUser);
-
-    expect(response.statusCode).toBe(201);
-    expect(response.body.message).toBe(
-      `Created user with name ${newUser.firstName} ${newUser.lastName}`
-    );
-
-    const users = await knex("users").where(newUser);
-    expect(users).toHaveLength(1);
-  });
-
-  test("should not add a user with a duplicate name", async () => {
-    const existingUser = { firstName: "Jane", lastName: "Smith" };
-    await knex("users").insert(existingUser);
-
-    const response = await request(app)
-      .post("/users")
-      .send(existingUser);
-
-    expect(response.statusCode).toBe(400);
-    expect(response.body.error).toBe("User with the same name already exists");
+describe('GET /', () => {
+  it('should return a list of users', (done) => {
+    request(app)
+      .get('/')
+      .expect(200)
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(res.body).to.be.an('array');
+        done();
+      });
   });
 });

@@ -2,12 +2,15 @@ const express = require("express");
 const app = express();
 const db = require("./db/db");
 const usersRouter = require("./routes/users");
+const bodyParser = require("body-parser");
 
 // Connect to the database
 db.connect();
 
-app.get("/", (req, resp) => {
-  resp.send({ message: "hello world" });
+app.use(bodyParser.json());
+
+app.get("/", (req, res) => {
+  res.send({ message: "Hello, world!" });
 });
 
 // Users routes
