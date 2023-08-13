@@ -1,4 +1,5 @@
-const knex = require("knex")(require("./knexfile.js"));
+const { knexConfig } = require("./db");
+const knex = require("knex")(knexConfig);
 
 const createTableIfNotExists = async (tableName, tableSchema) => {
   try {

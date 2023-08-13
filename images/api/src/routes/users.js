@@ -1,10 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const knex = require("knex")(require("../db/knexfile"));
+const knexConfig = require("../db/db").knexConfig; 
+const knex = require("knex")(knexConfig);
 const { makeTableUser } = require("../db/create-tables");
-const bodyParser = require("body-parser");
-
-router.use(bodyParser.json());
 
 makeTableUser();
 
