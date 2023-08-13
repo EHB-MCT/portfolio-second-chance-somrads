@@ -6,6 +6,7 @@ const express = require("express");
 const app = express(); // Create an instance of an Express app
 const db = require("./db/db"); // Database connection and utility methods
 const usersRouter = require("./routes/users"); // Router for user-related endpoints
+const journalRouter = require("./routes/journal"); // Router for user-related endpoints
 const bodyParser = require("body-parser"); // Middleware to parse request bodies
 
 /**
@@ -42,6 +43,11 @@ app.get("/", (req, res) => {
  * Mount the users router on the "/users" path
  */
 app.use("/users", usersRouter);
+
+/**
+ * Mount the journal router on the "/journal" path
+ */
+app.use("/journal", journalRouter);
 
 /**
  * Export the app instance for use in other modules
