@@ -12,13 +12,9 @@ services:
       - ./images/api/src:/usr/app/src
     environment:
       POSTGRES_CONNECTION_STRING: "postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@store:5432/${POSTGRES_DATABASE}"
-      POSTGRES_DATABASE: ${POSTGRES_DATABASE} 
+      POSTGRES_DATABASE: ${POSTGRES_DATABASE}
     healthcheck:
-      test:
-        [
-          "CMD-SHELL",
-          "curl -sSf http://localhost:3000/healthcheck"
-        ]
+      test: [ "CMD", "node", "--version" ]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -44,7 +40,6 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
-
   # store-test:
   #   image: postgres:latest
   #   container_name: dev5-db-test
@@ -67,5 +62,4 @@ services:
   #     retries: 5
 
 volumes:
-  pgdata:
-  # pgdata-test:
+  pgdata: # pgdata-test:

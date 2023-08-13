@@ -9,6 +9,10 @@ db.connect();
 
 app.use(bodyParser.json());
 
+app.get("/healthcheck", (req, res) => {
+  res.status(200).send("OK");
+});
+
 app.get("/", (req, res) => {
   res.send({ message: "Hello, world!" });
 });
