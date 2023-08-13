@@ -1,19 +1,27 @@
 const express = require("express");
 const router = express.Router();
-const knexConfig = require("../db/db").knexConfig; 
+const knexConfig = require("../db/db").knexConfig;
 const knex = require("knex")(knexConfig);
 const { makeTableUser } = require("../db/create-tables");
 
+// Initialize the user table
 makeTableUser();
 
+/**
+ * Centralized error handler.
+ * @param {Error} err - The error object.
+ * @param {express.Response} res - The Express response object.
+ */
 const handleError = (err, res) => {
   console.error(err);
   res.status(500).json({ error: err.message });
 };
 
+// Routes for base '/users' endpoint
 router
   .route("/")
   .get((req, res) => {
+    // Fetch all users from the 'users' table
     knex
       .select()
       .from("users")
@@ -22,6 +30,8 @@ router
   })
   .post((req, res) => {
     const { lastName, firstName } = req.body;
+
+    // Check if a user with the same name already exists
     knex
       .select()
       .from("users")
@@ -32,6 +42,7 @@ router
             .status(400)
             .json({ error: "User with the same name already exists" });
         } else {
+          // Insert new user into 'users' table
           knex
             .insert({ lastName, firstName })
             .into("users")
@@ -46,10 +57,16 @@ router
       .catch((err) => handleError(err, res));
   });
 
+// Routes for '/users/:id' endpoint
 router
   .route("/:id")
   .put((req, res) => {
     const { lastName, firstName } = req.body;
+
+    /**
+     * Update user with specified ID.
+     * @param {number} id - The user's ID.
+     */
     knex("users")
       .where({ id: req.params.id })
       .update({ lastName, firstName })
@@ -61,6 +78,10 @@ router
       .catch((err) => handleError(err, res));
   })
   .delete((req, res) => {
+    /**
+     * Delete user with specified ID.
+     * @param {number} id - The user's ID.
+     */
     knex("users")
       .where({ id: req.params.id })
       .del()
