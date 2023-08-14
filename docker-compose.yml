@@ -4,7 +4,7 @@ services:
   api:
     container_name: dev5-api
     env_file:
-      - .env
+      - ./.env
     build: ./images/api
     ports:
       - 80:3000
