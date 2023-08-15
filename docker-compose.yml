@@ -2,8 +2,10 @@ version: '3.2'
 
 services:
   api:
+    image: ${DOCKERHUB_USERNAME}/dev5-api:latest
     container_name: dev5-api
-    # env_file: # - .env
+    # env_file:
+    #   - .env
     build: ./images/api
     ports:
       - 80:3000
