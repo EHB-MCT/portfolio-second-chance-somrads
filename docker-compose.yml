@@ -55,7 +55,6 @@ services:
       POSTGRES_USER: ${TEST_POSTGRES_USER}
       POSTGRES_PASSWORD: ${TEST_POSTGRES_PASSWORD}
       POSTGRES_DATABASE: ${TEST_POSTGRES_DATABASE}
-
     volumes:
       - pgdata-test:/var/lib/postgresql/data
       - ./init-scripts:/docker-entrypoint-initdb.d/
@@ -68,6 +67,13 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --monitor-only --interval 30
 
 volumes:
   pgdata:
