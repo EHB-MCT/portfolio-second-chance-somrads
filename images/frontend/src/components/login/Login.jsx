@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import "../login/login.scss"
+import React, { useState } from "react";
+import axios from "axios";
+import "../login/login.scss";
 
 const Login = ({ onLoginSuccess }) => {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post('http://localhost:80/users', {
+      const response = await axios.post("http://localhost:80/users", {
         firstName: firstName,
         lastName: lastName,
       });
@@ -17,21 +17,23 @@ const Login = ({ onLoginSuccess }) => {
         onLoginSuccess(response.data);
       }
     } catch (error) {
-      console.error('Login error:', error);
+      console.error("Login error:", error);
     }
   };
 
   return (
     <div className="login-container">
+      <h1>Website Title</h1>
+      <p>Website description</p>
       <input
         type="text"
-        placeholder="First Name"
+        placeholder="Fake First Name"
         value={firstName}
         onChange={(e) => setFirstName(e.target.value)}
       />
       <input
         type="text"
-        placeholder="Last Name"
+        placeholder="Fake Last Name"
         value={lastName}
         onChange={(e) => setLastName(e.target.value)}
       />
