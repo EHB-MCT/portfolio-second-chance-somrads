@@ -1,9 +1,23 @@
-import React from 'react'
+// src/App.js
+import React, { useState } from 'react';
+import Login from '../login/Login';
 
-function Hero() {
+const Hero = () => {
+  const [user, setUser] = useState(null);
+
+  const handleLoginSuccess = (userData) => {
+    setUser(userData);
+  };
+
   return (
-    <div>Hero</div>
-  )
-}
+    <div className="hero">
+      {user ? (
+        <div>Welcome, {user.firstName} {user.lastName}!</div>
+      ) : (
+        <Login onLoginSuccess={handleLoginSuccess} />
+      )}
+    </div>
+  );
+};
 
-export default Hero
+export default Hero;
