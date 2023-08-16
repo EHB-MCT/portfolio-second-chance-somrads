@@ -8,11 +8,19 @@ const db = require("./db/db"); // Database connection and utility methods
 const usersRouter = require("./routes/users"); // Router for user-related endpoints
 const journalRouter = require("./routes/journal"); // Router for user-related endpoints
 const bodyParser = require("body-parser"); // Middleware to parse request bodies
+const cors = require('cors');
+
 
 /**
  * Middleware to parse JSON bodies from HTTP requests
  */
 app.use(bodyParser.json());
+
+/**
+ * Middleware to add CORS header
+ */
+
+app.use(cors()); 
 
 /**
  * Initialize and connect to the database

@@ -12,6 +12,7 @@ const Login = ({ onLoginSuccess }) => {
         firstName: firstName,
         lastName: lastName,
       });
+      console.log(response.data);
       if (response.data) {
         onLoginSuccess(response.data);
       }
