@@ -4,8 +4,8 @@ services:
   api:
     image: ${DOCKERHUB_USERNAME}/dev5-api:latest
     container_name: dev5-api
-    # env_file:
-    #   - .env
+    env_file:
+      - .env
     build: ./images/api
     ports:
       - 80:3000
@@ -23,6 +23,20 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+
+  frontend:
+    build:
+      context: ./images/frontend
+    container_name: frontend
+    ports:
+      - 5001:5000
+    depends_on:
+      - api
+    volumes:
+      - ./images/frontend:/app
+      - /app/node_modules
+    environment:
+      NODE_ENV: development
 
   store:
     image: postgres:latest
@@ -73,7 +87,7 @@ services:
     container_name: watchtower
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    command: --monitor-only --interval 30
+    # command: --monitor-only --interval 30
 
 volumes:
   pgdata:

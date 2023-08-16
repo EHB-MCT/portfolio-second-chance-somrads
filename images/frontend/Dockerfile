@@ -1,19 +1,23 @@
+# Use an official Node.js runtime as the base image
 FROM node:latest
 
-RUN mkdir -p /usr/src/app
+# Set the working directory inside the container
+WORKDIR /app
 
+# Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
 
-WORKDIR /usr/src
+# Install dependencies
+RUN npm install --quiet
 
-RUN npm install
+# Copy the rest of the application to the working directory
+COPY . .
 
-COPY ./ ./
-
-RUN npm run build
-
+# Expose port 3000 for the React app to listen on
 EXPOSE 5000
 
-VOLUME /usr/src
+# This line sets the HOST environment variable
+ENV HOST=0.0.0.0
 
-CMD ["npm", "run" , "dev"]
+# Start the React app
+CMD ["npm", "start"]
