@@ -1,0 +1,42 @@
+.hero {
+  background-color: #121212;
+  color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.logo {
+  font-size: 25px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color:cadetblue
+}
+
+.logoutButton {
+  background-color: #536DFE;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.logoutButton:hover {
+  background-color: #3D5AFE;
+}
+
+.welcomeWrapper {
+  padding: 20px;
+}
+
+.welcomeText {
+  font-size: 24px;
+}

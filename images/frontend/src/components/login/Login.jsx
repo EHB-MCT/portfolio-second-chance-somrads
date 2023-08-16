@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "../login/login.scss";
+import styles from "../login/login.module.scss";
 
 const Login = ({ onLoginSuccess }) => {
   const [firstName, setFirstName] = useState("");
@@ -21,23 +21,34 @@ const Login = ({ onLoginSuccess }) => {
     }
   };
 
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      handleLogin();
+    }
+  };
+
   return (
-    <div className="login-container">
-      <h1>Website Title</h1>
-      <p>Website description</p>
-      <input
-        type="text"
-        placeholder="Fake First Name"
-        value={firstName}
-        onChange={(e) => setFirstName(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Fake Last Name"
-        value={lastName}
-        onChange={(e) => setLastName(e.target.value)}
-      />
-      <button onClick={handleLogin}>Login</button>
+    <div className={styles.container}>
+      <div className={styles.loginWrapper}>
+        <p>
+          Share your joys, troubles, and stories while reading others. <br />{" "}
+          <br /> Join the world of shared experiences anonymously!
+        </p>
+        <input
+          type="text"
+          placeholder="First Name"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Last Name"
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+          onKeyDown={handleKeyPress}
+        />
+        <button onClick={handleLogin}>Login</button>
+      </div>
     </div>
   );
 };
