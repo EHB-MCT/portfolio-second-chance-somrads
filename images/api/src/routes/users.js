@@ -56,10 +56,10 @@ router
           knex
             .insert({ lastName, firstName })
             .into("users")
-            .then(() => {
-              res.status(201).json({
-                message: `Created user with name ${firstName} ${lastName}`,
-              });
+            .returning("*")
+            .then((users) => {
+              const createdUser = users[0];
+              res.status(201).json(createdUser);
             })
             .catch((err) => handleError(err, res));
         }
