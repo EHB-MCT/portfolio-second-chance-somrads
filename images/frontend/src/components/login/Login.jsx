@@ -12,12 +12,21 @@ const Login = ({ onLoginSuccess }) => {
         firstName: firstName,
         lastName: lastName,
       });
-      console.log(response.data);
-      if (response.data) {
+
+      if (response.status === 201) {
+        // Assuming 201 is the status code for successful creation
         onLoginSuccess(response.data);
       }
     } catch (error) {
       console.error("Login error:", error);
+      if (
+        error.response &&
+        error.response.data.error === "User with the same name already exists"
+      ) {
+        alert("The name is already in use. Please choose a different name.");
+      } else {
+        alert("Error during login. Please try again later.");
+      }
     }
   };
 
@@ -30,6 +39,7 @@ const Login = ({ onLoginSuccess }) => {
   return (
     <div className={styles.container}>
       <div className={styles.loginWrapper}>
+        <h1>Join us!</h1>
         <p>
           Share your joys, troubles, and stories while reading others. <br />{" "}
           <br /> Join the world of shared experiences anonymously!
