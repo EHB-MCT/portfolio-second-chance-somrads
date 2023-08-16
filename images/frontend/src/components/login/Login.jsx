@@ -41,24 +41,24 @@ const Login = ({ onLoginSuccess }) => {
       <div className={styles.loginWrapper}>
         <h1>Join us!</h1>
         <p>
-          Share your joys, troubles, and stories while reading others. <br />{" "}
-          <br /> Join the world of shared experiences anonymously!
+          Share your joys, troubles, and stories while reading others anonymously.
         </p>
         <input
           type="text"
-          placeholder="First Name"
+          placeholder="Fake First Name"
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
         />
         <input
           type="text"
-          placeholder="Last Name"
+          placeholder="Fake Last Name"
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
           onKeyDown={handleKeyPress}
         />
         <button onClick={handleLogin}>Login</button>
       </div>
+      <p className={styles.credit}>Created by Somrad Sharma for the course Development 5 ( 2022- 2023) </p>
     </div>
   );
 };

@@ -6,6 +6,7 @@ $button-background-color: #536DFE;
 $button-hover-background-color: #3D5AFE;
 
 .container {
+  position: relative; // Add this line
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,5 +59,14 @@ $button-hover-background-color: #3D5AFE;
         background-color: $button-hover-background-color;
       }
     }
+  }
+
+  .credit {
+    position: absolute; 
+    bottom: 10px;       
+    left: 50%;          
+    transform: translateX(-50%);
+    color: $secondary-text-color; 
+    font-size: 12px;
   }
 }

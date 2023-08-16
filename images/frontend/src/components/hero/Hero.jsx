@@ -23,7 +23,7 @@ const Hero = () => {
   return (
     <div className={styles.hero}>
       <div className={styles.navBar}>
-        <h1 className={styles.logo}>Anonymously connect</h1>
+        <h1 className={styles.logo}>Anonymously Connect</h1>
         {user && (
           <button onClick={handleLogout} className={styles.logoutButton}>
             Logout
