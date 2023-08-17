@@ -7,7 +7,7 @@ import styles from "./hero.module.scss";
 const Hero = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const [user, setUser] = useState(storedUser);
-  const [journalKey, setJournalKey] = useState(0); 
+  const [journalKey, setJournalKey] = useState(0);
 
   const handleLoginSuccess = (userData) => {
     setUser(userData);
@@ -42,8 +42,10 @@ const Hero = () => {
           <h2 className={styles.welcomeText}>
             Welcome, {user.firstName} {user.lastName}!
           </h2>
-          <JournalForm onPostSuccess={refreshEntries} />
-          <JournalList key={journalKey} />
+          <div className={styles.journalWrapper}>
+            <JournalForm onPostSuccess={refreshEntries} />
+            <JournalList key={journalKey} />
+          </div>
         </div>
       ) : (
         <Login onLoginSuccess={handleLoginSuccess} />
