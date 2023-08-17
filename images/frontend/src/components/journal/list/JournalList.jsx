@@ -22,8 +22,8 @@ const JournalList = () => {
     try {
       const response = await axios.delete(`http://localhost:80/journal/${id}`);
       if (response.status === 200) {
-        fetchEntries(); 
-        alert("Journal entry deleted successfully!");  
+        fetchEntries();
+        alert("Journal entry deleted successfully!");
       }
     } catch (error) {
       console.error("Error deleting journal entry:", error);
@@ -33,21 +33,28 @@ const JournalList = () => {
   return (
     <div className={styles.listContainer}>
       <h3>Anonymous Journal Entries</h3>
-      {entries.map((entry) => (
-        <div key={entry.id} className={styles.entryBox}>
-          <span className={styles.date}>
-            {new Date(entry.date).toLocaleDateString()}
-          </span>
-          <h3>{entry.title}</h3>
-          <p>{entry.entry}</p>
-          <button 
-              className={styles.deleteButton} 
-              onClick={() => handleDelete(entry.id)}
-          >
-              X
-          </button>
-        </div>
-      ))}
+      {entries
+        .slice()
+        .reverse()
+        .map(
+          (
+            entry
+          ) => (
+            <div key={entry.id} className={styles.entryBox}>
+              <span className={styles.date}>
+                {new Date(entry.date).toLocaleDateString()}
+              </span>
+              <h3>{entry.title}</h3>
+              <p>{entry.entry}</p>
+              <button
+                className={styles.deleteButton}
+                onClick={() => handleDelete(entry.id)}
+              >
+                X
+              </button>
+            </div>
+          )
+        )}
     </div>
   );
 };
