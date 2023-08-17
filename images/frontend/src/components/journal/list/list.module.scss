@@ -12,7 +12,7 @@ $button-hover-background-color: #3d5afe;
   overflow-y: auto;
 
   &::-webkit-scrollbar {
-    width: 10px; // Adjust width of the scrollbar here if needed.
+    width: 5px;
   }
 
   &::-webkit-scrollbar-thumb {
@@ -51,6 +51,22 @@ $button-hover-background-color: #3d5afe;
       right: 10px;
       color: $secondary-text-color;
       font-size: 11px;
+    }
+  }
+
+  .deleteButton {
+    position: absolute;
+    top: 8px;
+    right: 80px;
+    background: none;
+    border: none;
+    color: orange;
+    font-size: 14px;
+    cursor: pointer;
+    transition: color 0.3s;
+
+    &:hover {
+      color: $button-background-color;
     }
   }
 }
