@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import styles from "./form.module.scss";
 
 const JournalForm = ({ onPostSuccess }) => {
     const [title, setTitle] = useState('');
@@ -21,7 +22,9 @@ const JournalForm = ({ onPostSuccess }) => {
     };
 
     return (
-        <div>
+        
+        <div className={styles.formContainer}>
+            <h4>Post a journal entry!</h4>
             <input 
                 type="text" 
                 placeholder="Title" 
