@@ -1,21 +1,39 @@
 $background-color: #121212;
-$primary-text-color: #FFFFFF;
-$secondary-text-color: #B0B0B0;
+$primary-text-color: #ffffff;
+$secondary-text-color: #b0b0b0;
 $box-background-color: rgba(255, 255, 255, 0.05);
-$button-background-color: #536DFE;
-$button-hover-background-color: #3D5AFE;
+$button-background-color: #536dfe;
+$button-hover-background-color: #3d5afe;
 
 .listContainer {
-  width: 50%;  
+  width: 50%;
   padding: 20px;
-  width: 50%; 
-  
+  max-height: calc(80vh - 200px);
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 10px; // Adjust width of the scrollbar here if needed.
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $button-background-color;
+    border-radius: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $box-background-color;
+  }
+
   div.entryBox {
     background-color: $box-background-color;
     border-radius: 8px;
     padding: 10px;
     margin-bottom: 15px;
     position: relative;
+
+    &:hover {
+      background-color: rgba(117, 93, 93, 0.05);
+    }
 
     h3 {
       color: $primary-text-color;

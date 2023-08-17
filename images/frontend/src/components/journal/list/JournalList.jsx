@@ -20,11 +20,11 @@ const JournalList = () => {
 
   return (
     <div className={styles.listContainer}>
-        <h3>Anonymous Journal Entries</h3>
+      <h3>Anonymous Journal Entries</h3>
       {entries.map((entry) => (
         <div key={entry.id} className={styles.entryBox}>
           <span className={styles.date}>
-            {new Date(entry.date).toLocaleString()}
+            {new Date(entry.date).toLocaleDateString()}
           </span>
           <h3>{entry.title}</h3>
           <p>{entry.entry}</p>
