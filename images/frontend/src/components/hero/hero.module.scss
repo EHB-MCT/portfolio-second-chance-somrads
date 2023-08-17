@@ -1,3 +1,4 @@
+/* Main container for the Hero component */
 .hero {
   background-color: #121212;
   color: #ffffff;
@@ -6,6 +7,7 @@
   height: 100vh;
 }
 
+/* Navigation bar styles */
 .navBar {
   display: flex;
   justify-content: space-between;
@@ -13,12 +15,14 @@
   padding: 20px;
 }
 
+/* Logo styling inside the navbar */
 .logo {
   font-size: 25px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: orange;
 }
 
+/* Logout button default and hover styles */
 .logoutButton {
   background-color: #536dfe;
   color: #ffffff;
@@ -33,20 +37,7 @@
   background-color: orange;
 }
 
-.welcomeWrapper {
-  padding: 20px;
-}
-
-.welcomeText {
-  font-size: 24px;
-}
-
-.journalWrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
+/* Container for welcome text and journal */
 .welcomeWrapper {
   display: flex;
   flex-direction: column;
@@ -55,4 +46,16 @@
   width: 100%;
   max-width: 1200px;
   margin: 0 auto; 
+}
+
+/* Welcome message styling */
+.welcomeText {
+  font-size: 24px;
+}
+
+/* Container for journal form and list */
+.journalWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 }

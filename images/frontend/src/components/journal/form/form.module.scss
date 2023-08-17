@@ -1,3 +1,4 @@
+// Theme Colors
 $background-color: #121212;
 $primary-text-color: #FFFFFF;
 $secondary-text-color: #B0B0B0;
@@ -5,15 +6,16 @@ $input-border-color: #333333;
 $button-background-color: #536DFE;
 $button-hover-background-color: #3D5AFE;
 
+// Container for the form elements
 .formContainer {
   background-color: $background-color;
   color: $primary-text-color;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding: 20px 0;
   border-radius: 10px;
   max-width: 400px;
   width: 40%;
 
+  // Styles for input fields and textareas
   input, textarea {
     width: 100%;
     padding: 10px;
@@ -24,16 +26,19 @@ $button-hover-background-color: #3D5AFE;
     color: $primary-text-color;
     font-size: 16px;
 
+    // Placeholder text color
     &::placeholder {
       color: $secondary-text-color;
     }
   }
 
+  // Allow only vertical resizing for textarea
   textarea {
     resize: vertical;
     min-height: 120px;
   }
 
+  // Styles for the submit button
   button {
     display: block;
     width: 100%;
@@ -46,6 +51,7 @@ $button-hover-background-color: #3D5AFE;
     cursor: pointer;
     transition: background-color 0.3s;
 
+    // Hover effect for the submit button
     &:hover {
       background-color: $button-hover-background-color;
     }

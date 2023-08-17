@@ -1,3 +1,4 @@
+// Theme Colors
 $background-color: #121212;
 $primary-text-color: #ffffff;
 $secondary-text-color: #b0b0b0;
@@ -5,16 +6,18 @@ $box-background-color: rgba(255, 255, 255, 0.05);
 $button-background-color: #536dfe;
 $button-hover-background-color: #3d5afe;
 
+// Main container for the journal entries list
 .listContainer {
   width: 50%;
   padding: 20px;
   max-height: calc(80vh - 200px);
   overflow-y: auto;
 
+  // Scrollbar styles
   &::-webkit-scrollbar {
     width: 5px;
   }
-
+  
   &::-webkit-scrollbar-thumb {
     background: $button-background-color;
     border-radius: 5px;
@@ -24,6 +27,7 @@ $button-hover-background-color: #3d5afe;
     background: $box-background-color;
   }
 
+  // Styling for individual journal entry boxes
   div.entryBox {
     background-color: $box-background-color;
     border-radius: 8px;
@@ -31,20 +35,24 @@ $button-hover-background-color: #3d5afe;
     margin-bottom: 15px;
     position: relative;
 
+    // Hover effect for entry box
     &:hover {
       background-color: rgba(117, 93, 93, 0.05);
     }
 
+    // Entry title styles
     h3 {
       color: $primary-text-color;
       margin-top: 0;
     }
 
+    // Entry content text style
     p {
       color: $secondary-text-color;
       margin-bottom: 8px;
     }
 
+    // Date displayed at the top-right of the entry
     span.date {
       position: absolute;
       top: 10px;
@@ -54,6 +62,7 @@ $button-hover-background-color: #3d5afe;
     }
   }
 
+  // Delete button styling inside each entry
   .deleteButton {
     position: absolute;
     top: 8px;
@@ -66,6 +75,7 @@ $button-hover-background-color: #3d5afe;
     cursor: pointer;
     transition: color 0.3s;
 
+    // Hover effect for delete button
     &:hover {
       color: $button-background-color;
     }

@@ -1,12 +1,13 @@
 $background-color: #121212;
-$primary-text-color: #FFFFFF;
-$secondary-text-color: #B0B0B0;
+$primary-text-color: #ffffff;
+$secondary-text-color: #b0b0b0;
 $input-border-color: #333333;
-$button-background-color: #536DFE;
-$button-hover-background-color: #3D5AFE;
+$button-background-color: #536dfe;
+$button-hover-background-color: #3d5afe;
 
+// Main container for the login page
 .container {
-  position: relative; // Add this line
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,23 +15,27 @@ $button-hover-background-color: #3D5AFE;
   background-color: $background-color;
   color: $primary-text-color;
 
+  // Wrapper for the login form and content
   .loginWrapper {
     width: 300px;
     text-align: center;
     padding: 20px;
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.05); 
+    background: rgba(255, 255, 255, 0.05);
 
+    // Login page title
     h1 {
       font-size: 24px;
       margin-bottom: 8px;
     }
 
+    // Description or instruction text
     p {
       color: $secondary-text-color;
       margin-bottom: 20px;
     }
 
+    // Common styling for both input fields
     input {
       width: 94%;
       padding: 10px;
@@ -40,11 +45,13 @@ $button-hover-background-color: #3D5AFE;
       background-color: transparent;
       color: $primary-text-color;
 
+      // Placeholder color for the input fields
       &::placeholder {
         color: $secondary-text-color;
       }
     }
 
+    // Login button styling
     button {
       width: 100%;
       padding: 10px;
@@ -55,18 +62,20 @@ $button-hover-background-color: #3D5AFE;
       cursor: pointer;
       transition: background-color 0.3s;
 
+      // Hover effect for the login button
       &:hover {
         background-color: orange;
       }
     }
   }
 
+  // Credit text at the bottom of the page
   .credit {
-    position: absolute; 
-    bottom: 10px;       
-    left: 50%;          
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
     transform: translateX(-50%);
-    color: $secondary-text-color; 
+    color: $secondary-text-color;
     font-size: 12px;
   }
 }
