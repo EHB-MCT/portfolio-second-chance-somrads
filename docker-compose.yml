@@ -4,8 +4,8 @@ services:
   api:
     image: ${DOCKERHUB_USERNAME}/dev5-api:latest
     container_name: dev5-api
-    env_file:
-      - .env
+    # env_file:
+    #   - .env
     build: ./images/api
     ports:
       - 80:3000
@@ -24,19 +24,19 @@ services:
       timeout: 5s
       retries: 5
 
-  # frontend:
-  #   build:
-  #     context: ./images/frontend
-  #   container_name: frontend
-  #   ports:
-  #     - 5001:5000
-  #   depends_on:
-  #     - api
-  #   volumes:
-  #     - ./images/frontend:/app
-  #     - /app/node_modules
-  #   environment:
-  #     NODE_ENV: development
+  frontend:
+    build:
+      context: ./images/frontend
+    container_name: frontend
+    ports:
+      - 5001:5000
+    depends_on:
+      - api
+    volumes:
+      - ./images/frontend:/app
+      - /app/node_modules
+    environment:
+      NODE_ENV: development
 
   store:
     image: postgres:latest
