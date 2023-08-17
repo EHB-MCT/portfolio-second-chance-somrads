@@ -46,25 +46,13 @@ router
   .post((req, res) => {
     const { title, entry } = req.body;
     const currentDate = new Date().toISOString().slice(0, 10);
-
-    knex("journal_entries")
-      .where("date", "=", currentDate)
-      .then((journalEntries) => {
-        if (journalEntries.length > 0) {
-          res.status(400).json({
-            error: "Journal entry with the current date already exists",
-          });
-        } else {
-          knex
-            .insert({ title, entry, date: currentDate })
-            .into("journal_entries")
-            .then(() => {
-              res.status(201).json({
-                message: `Created journal entry with title "${title}" and entry "${entry}"`,
-              });
-            })
-            .catch((err) => handleError(err, res));
-        }
+    knex
+      .insert({ title, entry, date: currentDate })
+      .into("journal_entries")
+      .returning("*")
+      .then((entries) => {
+        const createdEntry = entries[0];
+        res.status(201).json(createdEntry);
       })
       .catch((err) => handleError(err, res));
   });

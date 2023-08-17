@@ -2,7 +2,6 @@
 const environment = process.env.NODE_ENV || "development"; // Set the environment variable or default to 'development'
 const config = require("./knexfile"); // Import the knex configuration
 const knexConfig = config[environment] || config.development; // Use the configuration based on the environment
-console.log("Using configuration:", knexConfig); // Log the current configuration
 const knex = require("knex")(knexConfig); // Initialize knex with the chosen configuration
 
 module.exports = {
