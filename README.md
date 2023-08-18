@@ -47,7 +47,6 @@ This project is a component of the Development 5 course for the Bachelor's Degre
    TEST_POSTGRES_DATABASE=testdb
    DOCKERHUB_USERNAME=your_dockerhub_username
    DOCKERHUB_TOKEN=your_dockerhub_token_or_password
-   `
    ```
 
    > **Security Note**: The .env file is ignored via .gitignore for security. If you don't wish to use secrets, you can remove the .env entry from .gitignore. Do so at your own risk.
