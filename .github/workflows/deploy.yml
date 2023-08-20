@@ -1,0 +1,38 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  build_and_push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set secrets as environment variables
+        run: |
+          echo "POSTGRES_USER=${{ secrets.POSTGRES_USER }}" >> $GITHUB_ENV
+          echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}" >> $GITHUB_ENV
+          echo "POSTGRES_DATABASE=${{ secrets.POSTGRES_DATABASE }}" >> $GITHUB_ENV
+          echo "TEST_POSTGRES_USER=${{ secrets.TEST_POSTGRES_USER }}" >> $GITHUB_ENV
+          echo "TEST_POSTGRES_PASSWORD=${{ secrets.TEST_POSTGRES_PASSWORD }}" >> $GITHUB_ENV
+          echo "TEST_POSTGRES_DATABASE=${{ secrets.TEST_POSTGRES_DATABASE }}" >> $GITHUB_ENV
+          echo "DOCKERHUB_USERNAME=${{ secrets.DOCKERHUB_USERNAME }}" >> $GITHUB_ENV
+
+      - name: Login to Docker Hub
+        run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+
+      - name: Build and push Docker images
+        run: |
+          docker-compose -f ./docker-compose.yml build
+          docker-compose -f ./docker-compose.yml push
+        env:
+          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
